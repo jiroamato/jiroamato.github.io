@@ -18,7 +18,7 @@
     "href": "about.html#projects",
     "title": "About",
     "section": "📑 Projects",
-    "text": "📑 Projects\n\nData Scientist | Stock Trend Prediciton with NLP 📈\nJUL 2024 - Explored different Natural Language Processing techinques in order to process text data. - Conducted grid search to optimize for the best sentiment analysis model. - Conducted experiments on base time series models which include AR, MA, ARIMA, and SARIMAX models. - Ulitized Recurrent Neural Networks (RNNs) like LSTM in order combine sentiment data with stock price data."
+    "text": "📑 Projects\n\nStock Trend Prediciton with NLP 📈\nJUL 2024 - Explored different Natural Language Processing techinques in order to process text data. - Conducted grid search to optimize for the best sentiment analysis model. - Conducted experiments on base time series models which include AR, MA, ARIMA, and SARIMAX models. - Ulitized Recurrent Neural Networks (RNNs) like LSTM in order combine sentiment data with stock price data."
   },
   {
     "objectID": "about.html#connect-with-me",
