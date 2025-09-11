@@ -2,4 +2,36 @@
 title: "About"
 ---
 
-About this site
+## Welcome to Jiro's World (like 'Hero' with a J)
+
+
+ 👨‍🦱 About Me
+---
+
+I am an aspiring Data Scientist based in Vancouver currently enrolled in the Master of Data Science at the University of British Columbia. My journey towards this career shift began during my time as an Investment Analyst in Web3, where I discovered my passion for data as I honed my skills in data analytics and critical thinking to evaluate startups, make investment decisions, and assess market trends.
+
+During my role as an Investment Analyst, my interest in Machine Learning was also ignited through seeing many firms leverage ML models in research and in practice through Algorithmic Trading. Combined with a background in finance and tech sales, I believe I can bridge the gap between technical analysis and business insight.
+
+What excites me is the nascent landscape of Data Science which means that there is a lot to be done in terms of research and innovation in all domains. Let's uncover the stories in your data and transform insights into impactful actions.
+
+ 📑 Projects
+---
+
+### Data Scientist | [Stock Trend Prediciton with NLP](https://github.com/jiroamato/Stock-Trend-Prediction-With-NLP) 📈
+_JUL 2024_
+- Explored different Natural Language Processing techinques in order to process text data.
+- Conducted grid search to optimize for the best sentiment analysis model.
+- Conducted experiments on base time series models which include AR, MA, ARIMA, and SARIMAX models.
+- Ulitized Recurrent Neural Networks (RNNs) like LSTM in order combine sentiment data with stock price data.
+
+ 🤝 Connect with Me
+---
+
+Feel free to reach out to me on [LinkedIn](https://www.linkedin.com/in/jiroamato/).
+
+![Image3](https://user-images.githubusercontent.com/74038190/212744289-c46f1717-bfc9-4724-8ef3-4b08e3583110.gif)
+
+---
+
+_"Always be ready to adjust, recalibrate, and stay after it to become better, somehow."_ 
+- David Goggins
