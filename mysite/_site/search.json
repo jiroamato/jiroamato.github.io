@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Jiro’s World",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html#curly_haired_man-about-me",
+    "href": "index.html#curly_haired_man-about-me",
+    "title": "Jiro’s World",
+    "section": "### :curly_haired_man: About Me",
+    "text": "### :curly_haired_man: About Me\nI am an aspiring Data Scientist based in Vancouver currently enrolled in the Master of Data Science at the University of British Columbia. My journey towards this career shift began during my time as an Investment Analyst in Web3, where I discovered my passion for data as I honed my skills in data analytics and critical thinking to evaluate startups, make investment decisions, and assess market trends.\nDuring my role as an Investment Analyst, my interest in Machine Learning was also ignited through seeing many firms leverage ML models in research and in practice through Algorithmic Trading. Combined with a background in finance and tech sales, I believe I can bridge the gap between technical analysis and business insight.\nWhat excites me is the nascent landscape of Data Science which means that there is a lot to be done in terms of research and innovation in all domains. Let’s uncover the stories in your data and transform insights into impactful actions."
+  },
+  {
+    "objectID": "index.html#bookmark_tabs-projects",
+    "href": "index.html#bookmark_tabs-projects",
+    "title": "Jiro’s World",
+    "section": "## :bookmark_tabs: Projects",
+    "text": "## :bookmark_tabs: Projects\n\nData Scientist | Stock Trend Prediciton with NLP :chart_with_upwards_trend:\nJUL 2024 - Explored different Natural Language Processing techinques in order to process text data. - Conducted grid search to optimize for the best sentiment analysis model. - Conducted experiments on base time series models which include AR, MA, ARIMA, and SARIMAX models. - Ulitized Recurrent Neural Networks (RNNs) like LSTM in order combine sentiment data with stock price data."
+  },
+  {
+    "objectID": "index.html#connect-with-me",
+    "href": "index.html#connect-with-me",
+    "title": "Jiro’s World",
+    "section": "🤝 Connect with Me",
+    "text": "🤝 Connect with Me\nFeel free to reach out to me on LinkedIn.\n\n\n\nImage3\n\n\n\n“Always be ready to adjust, recalibrate, and stay after it to become better, somehow.” - David Goggins"
+  },
+  {
+    "objectID": "index.html#about-me",
+    "href": "index.html#about-me",
+    "title": "Jiro’s World",
+    "section": "👨‍🦱 About Me",
+    "text": "👨‍🦱 About Me\nI am an aspiring Data Scientist based in Vancouver currently enrolled in the Master of Data Science at the University of British Columbia. My journey towards this career shift began during my time as an Investment Analyst in Web3, where I discovered my passion for data as I honed my skills in data analytics and critical thinking to evaluate startups, make investment decisions, and assess market trends.\nDuring my role as an Investment Analyst, my interest in Machine Learning was also ignited through seeing many firms leverage ML models in research and in practice through Algorithmic Trading. Combined with a background in finance and tech sales, I believe I can bridge the gap between technical analysis and business insight.\nWhat excites me is the nascent landscape of Data Science which means that there is a lot to be done in terms of research and innovation in all domains. Let’s uncover the stories in your data and transform insights into impactful actions."
+  },
+  {
+    "objectID": "index.html#projects",
+    "href": "index.html#projects",
+    "title": "Jiro’s World",
+    "section": "📑 Projects",
+    "text": "📑 Projects\n\nData Scientist | Stock Trend Prediciton with NLP 📈\nJUL 2024 - Explored different Natural Language Processing techinques in order to process text data. - Conducted grid search to optimize for the best sentiment analysis model. - Conducted experiments on base time series models which include AR, MA, ARIMA, and SARIMAX models. - Ulitized Recurrent Neural Networks (RNNs) like LSTM in order combine sentiment data with stock price data."
+  }
+]
