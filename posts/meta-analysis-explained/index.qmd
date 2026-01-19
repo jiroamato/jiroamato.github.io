@@ -1,171 +1,240 @@
 ---
-title: "Why the Most Advertised Hair Loss Treatment Isn't Always the Best"
+title: "What Your Pharmacy Shelves Won't Tell You About Hair Loss Treatment"
 subtitle: "A Data Science Approach to Comparing Treatments with Network Meta-Analysis"
 author: "Jiro Amato"
 date: "2026-01-17"
 categories: [data science, statistics, network meta-analysis, health]
 jupyter: python3
+bibliography: references.bib
 format:
   html:
     toc: true
     code-fold: true
 ---
 
-## The Pharmacy Aisle Problem
+## The Problem: Too Many Treatments, Not Enough Comparisons
 
-You are standing in a pharmacy, staring at a shelf full of hair loss treatments. Each product claims to be "clinically proven" and "most effective solution." A barber suggested one product, a friend of yours swears by another and the Internet has thousand of conflicting opinions. So how do you actually know which one is the best?
+Imagine that you are experiencing hair loss and you want to do something about it. You go online and find three main options for treatment. Minoxidil (commonly known as Rogaine), finasteride and dutasteride. Each one has studies showing it beats a placebo. Great. But which one actually works *best*?
 
-This is not just a problem of hair loss. No matter whether you are choosing medicine, a software or a learning strategy, we face the situation where there are many options, each of them is proved with some evidence and the results are never compared with each other.
+The frustrating part for the consumer is that most clinical trials only test one treatment against a placebo. Sometimes they'll compare two treatments directly. But running trials that compare every possible pair? That's expensive, takes time and as more treatments hit the market, it becomes basically impossible.
 
-Traditional clinical trials are comparing one treatment with a placebo and comparing two treatments. What happens if there are 9 treatments and there are only few experiments. This is where **Network Meta-Analysis (NMA)** comes in - statistical methods of comparisons of many treatments at the same time, even if it has never been compared with each other before.
+So how do researchers figure out which treatment ranks first when they've never been directly compared?
 
-## The Limitation of Traditional Studies
+That's where **network meta-analysis** (NMA) comes in.
 
-The randomized controlled trial is the gold-standard of evidence in clinical research. It's a simple design: take a group of patients, give half of them the treatment and the other half a placebo, then compare the outcomes. The problem is this: suppose *Study A* shows that *Treatment X* beats the placebo by increasing hair density by 20 hairs per square centimeter and *Study B* shows *Treatment Y* beats the placebo by increasing density by 15 hairs per square centimeter. Can we conclude that *Treatment X* is better than *Treatment Y*? Not quite. These two studies may have been conducted on different populations, at different times and using different measurement techniques. For example, the patients in *Study A* might have been younger or had more severe hair loss to begin with. To directly compare results across studies would be to compare apples and oranges.
+## Indirect Comparisons Through a Common Reference
 
-There is a real world problem here for both consumers and healthcare providers. When faced with multiple treatment options, each supported by a separate study (or studies) against the placebo, which one should you go with? How do you rank them? How do you make an informed choice?
+Network meta-analysis is built on a simple idea. If we know how *Treatment A* compares to a placebo, and how *Treatment B* compares to that same placebo, we can estimate how *A* and *B* compare to each other.
 
-## What is Network Meta-Analysis?
+Let's make this concrete with numbers.
 
-Network Meta-Analysis solves this problem by creating a connected "network" of evidence. Instead of treating each study in isolation, NMA links studies together through their common comparators which is usually placebo.
+Suppose *Study 1* finds that finasteride increases hair count by 15 hairs/cm² compared to placebo and *Study 2* finds that minoxidil increases hair count by 12 hairs/cm² compared to placebo.
 
-Think of it like comparing athletes who never competed directly. If *Runner A* beats *Runner C* by 5 seconds, and *Runner B* beats *Runner C* by 3 seconds, we can reasonably infer that *Runner B* is probably faster than *Runner A* by about 2 seconds. The common reference point (*Runner C*) allows us to make indirect comparisons.
+In this case, finasteride and minoxidil were never tested head-to-head. However, we can still infer that finasteride is roughly 3 hairs/cm² more effective (15 - 12 = 3).
 
-In NMA, we work with three types of evidence:
+This is called an **indirect comparison**. The placebo serves as the **common comparator** which acts as the bridge connecting the two treatments.
 
-1. **Direct evidence**: Head-to-head trials where treatments were compared directly
-2. **Indirect evidence**: Comparisons made through a common comparator (like placebo)
-3. **Mixed evidence**: The combination of both direct and indirect evidence
+## Building Out the Network
+
+The real power of NMA comes when we have many treatments and many studies. You can picture all the evidence as a network. Each treatment is a **node**, including placebo. Each line (**edge**) between nodes represents studies that directly compared those two treatments (**direct comparison**).
 
 The magic of NMA is that it synthesizes all available evidence into a coherent framework. Even if Treatment X and Treatment Y were never tested against each other, we can estimate their relative effectiveness through their shared connections to other treatments in the network.
 
 ```{python}
 #| label: fig-network
-#| fig-cap: "A simplified network diagram showing how treatments connect through common comparators. Each node represents a treatment, and each edge represents studies comparing those treatments."
-#| fig-align: center
+#| fig-cap: "Network of treatment comparisons from the Gupta et al. 2022 study. Each node represents a treatment, and edges connect treatments that were directly compared in clinical trials. Node size reflects the number of studies involving that treatment, and edge thickness represents the number of direct comparisons."
+#| code-fold: true
+#| out-width: 100%
 
-import matplotlib.pyplot as plt
 import networkx as nx
+import matplotlib.pyplot as plt
 
-# Create a network graph
 G = nx.Graph()
 
-# Add nodes (treatments) - based on Gupta et al. 2025
-treatments = ['Control', 'Minoxidil 5%', 'Minoxidil 2%', 'Melatonin',
-              'Rosemary', 'Marine Complex', 'Procyanidin',
-              'Saw Palmetto', 'Ketoconazole', 'Watercress']
+# Nodes
+treatments = [
+    "Placebo",
+    "Minoxidil 2%\n(topical)",
+    "Minoxidil 5%\n(topical)",
+    "Minoxidil 0.25mg\n(oral)",
+    "Minoxidil 5mg\n(oral)",
+    "Finasteride 1mg\n(oral)",
+    "Finasteride 5mg\n(oral)",
+    "Dutasteride 0.5mg\n(oral)"
+]
+
 G.add_nodes_from(treatments)
 
-# Add edges (studies comparing treatments) - based on Figure 3
+# Edges
 edges = [
-    ('Control', 'Minoxidil 5%'),
-    ('Control', 'Minoxidil 2%'),
-    ('Control', 'Marine Complex'),
-    ('Control', 'Procyanidin'),
-    ('Control', 'Watercress'),
-    ('Minoxidil 2%', 'Minoxidil 5%'),
-    ('Minoxidil 2%', 'Rosemary'),
-    ('Minoxidil 2%', 'Ketoconazole'),
-    ('Minoxidil 2%', 'Melatonin'),
-    ('Saw Palmetto', 'Control')
+    ("Placebo", "Minoxidil 2%\n(topical)", 6),
+    ("Placebo", "Minoxidil 5%\n(topical)", 2),
+    ("Placebo", "Finasteride 1mg\n(oral)", 4),
+    ("Placebo", "Finasteride 5mg\n(oral)", 1),
+    ("Placebo", "Dutasteride 0.5mg\n(oral)", 2),
+    ("Minoxidil 2%\n(topical)", "Minoxidil 5%\n(topical)", 2),
+    ("Minoxidil 2%\n(topical)", "Finasteride 1mg\n(oral)", 1),
+    ("Finasteride 1mg\n(oral)", "Finasteride 5mg\n(oral)", 1),
+    ("Finasteride 1mg\n(oral)", "Dutasteride 0.5mg\n(oral)", 2),
+    ("Minoxidil 0.25mg\n(oral)", "Placebo", 1),
+    ("Minoxidil 5mg\n(oral)", "Placebo", 1),
 ]
-G.add_edges_from(edges)
 
-# Draw the network
-plt.figure(figsize=(7, 5))
-pos = nx.spring_layout(G, seed=42, k=2)
+G.add_weighted_edges_from(edges)
 
-# Draw nodes with different colors
-node_colors = ['lightgray' if n == 'Control' else 'skyblue' for n in G.nodes()]
-nx.draw_networkx_nodes(G, pos, node_color=node_colors, node_size=1500, alpha=0.9)
-nx.draw_networkx_labels(G, pos, font_size=7, font_weight='bold')
-nx.draw_networkx_edges(G, pos, width=2, alpha=0.6, edge_color='gray')
+fig, ax = plt.subplots(figsize=(8, 6))
 
-plt.title('Network of Treatment Comparisons', fontsize=14, fontweight='bold')
-plt.axis('off')
+pos = nx.spring_layout(G, k=2, iterations=50, seed=42)
+
+node_sizes = [800 + 400 * G.degree(node) for node in G.nodes()]
+
+color_map = []
+for node in G.nodes():
+    if "Placebo" in node:
+        color_map.append("#95a5a6")  # Gray for placebo
+    elif "Dutasteride" in node:
+        color_map.append("#e74c3c")  # Red for dutasteride
+    elif "Finasteride" in node:
+        color_map.append("#3498db")  # Blue for finasteride
+    else:
+        color_map.append("#2ecc71")  # Green for minoxidil
+
+edge_weights = [G[u][v]['weight'] * 1.5 for u, v in G.edges()]
+
+nx.draw_networkx_edges(G, pos, width=edge_weights, alpha=0.6, edge_color="#7f8c8d")
+nx.draw_networkx_nodes(G, pos, node_color=color_map, node_size=node_sizes, alpha=0.9)
+nx.draw_networkx_labels(G, pos, font_size=8, font_weight="bold")
+
+legend_elements = [
+    plt.scatter([], [], c="#95a5a6", s=150, label="Placebo"),
+    plt.scatter([], [], c="#e74c3c", s=150, label="Dutasteride"),
+    plt.scatter([], [], c="#3498db", s=150, label="Finasteride"),
+    plt.scatter([], [], c="#2ecc71", s=150, label="Minoxidil")
+]
+ax.legend(handles=legend_elements, loc="upper left", title="Treatment Type")
+
+ax.set_title("Network of Hair Loss Treatment Comparisons\n(Gupta et al. 2022)",
+             fontsize=14, fontweight="bold")
+ax.axis("off")
 plt.tight_layout()
 plt.show()
 ```
 
-Most modern NMA studies use a **Bayesian statistical framework**. Without diving too deep into the mathematics, this approach allows researchers to make probability statements like "there is a 95% probability that Treatment X is the most effective option." This is incredibly useful for decision-making because it directly answers the question we care about: which treatment should I choose?
+The figure above shows the network from the Gupta study. Notice how placebo sits at the center, connecting to most treatments. This is typical since many trials compare a new treatment against placebo. The lines between treatments represent direct head-to-head comparisons from clinical trials.
 
-## Case Study: Which Hair Loss Treatment Actually Works Best?
+Sometimes researchers have both direct evidence and indirect evidence for the same comparison. NMA combines them mathematically to get the most precise estimate possible. This combination of direct and indirect evidence is called **mixed treatment comparison**.
 
-In August 2025, Gupta and colleagues published a landmark study in the *International Journal of Molecular Sciences* that applied NMA to answer a question millions of people have asked: among all the over-the-counter hair loss treatments available, which one actually works best?
+Mixed treatment comparison uses weighted averages. Larger sampled studies with less variability contribute more to the final estmation. Most modern NMA uses Bayesian statistics to quantify uncertainty and provide an estimation. This allows researchers to say things like "there's a 96% chance *Treatment A* is the most effective.".
 
-A systematic review was conducted by gathering data from multiple clinical trials that lasted for 24 weeks and evaluated changes in hair density. Nine active treatments were identified, including minoxidil and its various concentrations and several non-conventional treatments that gained popularity within the last few years.
+## Case Study: Ranking Hair Loss Treatments
 
-Here's where NMA shines. Instead of simply listing what each individual study found, the researchers connected all the evidence through common comparators. This allowed them to rank all nine treatments simultaneously, even though most had never been tested head-to-head.
+In 2022, Gupta and colleagues published a NMA in *JAMA Dermatology* [@gupta2022]. They wanted to answer exactly this question, "Among minoxidil, finasteride, and dutasteride, which works best for male pattern hair loss?".
 
-The result? **Minoxidil 5% applied twice daily emerged as the most effective over-the-counter treatment for male androgenetic alopecia.**
+They took data from 23 clinical trials spanning several decades. The studies looked at different doses and formulations of the following treatments:
+
+- Oral dutasteride at 0.5 mg/day
+- Oral finasteride at 1 mg/day and 5 mg/day
+- Topical minoxidil in 2% and 5% solutions
+- Oral minoxidil at 0.25 mg/day and 5 mg/day
+- Placebo
+
+Most studies compared a single treatment to placebo and only a few went head-to-head. By connecting all the studies through the network, the researchers could rank all treatments at once.
+
+The results were clear. At 24 weeks, oral dutasteride (0.5 mg/day) came out on top. It had a SUCRA score of 96%. Then oral finasteride 5 mg at 88%. Topical minoxidil 5% at 80%. Oral finasteride 1 mg at 65%.
 
 ```{python}
-#| label: fig-ranking
-#| fig-cap: "Ranking of OTC hair loss treatments based on SUCRA values from Gupta et al. 2025. Minoxidil 5% shows the highest effectiveness."
+#| label: fig-sucra-ranking
 #| fig-align: center
+#| fig-cap: "SUCRA rankings for hair loss treatments at 24 weeks (total hair count). Higher values indicate greater probability of being the most effective treatment. Data from Gupta et al. 2022."
+#| code-fold: true
 
 import altair as alt
 import pandas as pd
 
-# Actual SUCRA values from Gupta et al. 2025 (Figure 4)
+# SUCRA values from Gupta et al. 2022, Figure 3 (Column A: Total hair count at 24 weeks)
 data = pd.DataFrame({
-    'Treatment': ['Minoxidil 5%', 'Melatonin', 'Rosemary', 'Marine Complex',
-                  'Minoxidil 2%', 'Procyanidin', 'Watercress',
-                  'Ketoconazole', 'Saw Palmetto', 'Control'],
-    'SUCRA': [99.7, 62.7, 60.6, 57.5, 56.3, 55.6, 42.9, 34.9, 17.8, 12.1]
+    'Treatment': [
+        'Dutasteride 0.5mg (oral)',
+        'Finasteride 5mg (oral)',
+        'Minoxidil 5% (topical)',
+        'Finasteride 1mg (oral)',
+        'Minoxidil 2% (topical)',
+        'Minoxidil 5mg (oral)',
+        'Placebo',
+        'Minoxidil 0.25mg (oral)'
+    ],
+    'SUCRA': [95.7, 87.8, 80.4, 65.2, 55.3, 29.6, 13.5, 8.4]
 })
 
 chart = alt.Chart(data).mark_bar().encode(
     x=alt.X('SUCRA:Q', title='SUCRA Value (%)', scale=alt.Scale(domain=[0, 100])),
     y=alt.Y('Treatment:N', sort='-x', title=None),
-    color=alt.Color('SUCRA:Q', scale=alt.Scale(scheme='blues'), legend=None)
+    color=alt.Color('SUCRA:Q', scale=alt.Scale(scheme='viridis'), legend=None)
 ).properties(
-    title='Ranking of OTC Hair Loss Treatments (Gupta et al. 2025)',
-    width=400,
-    height=300
+    title='Efficacy Ranking of Hair Loss Treatments (Gupta et al. 2022)',
+    width='container',
+    height=280
 )
 
 chart
 ```
 
-We can draw several conclusions from this study that could have a real world impact on treatment. We see a lot of products on the pharmacy shelf making big claims and this analysis helps cut through the noise. Across all the different alternatives with different marketing budgets, the one that consistently comes out as the best performing treatment is minoxidil 5% applied twice daily.
+## Under the Hood
 
-For someone like John, a 25-year-old professional who has been researching hair loss treatments and feeling overwhelmed by conflicting information, this kind of revelation is invaluable. Instead of relying on anecdotes or advertisements, he can base his decision on a rigorous analysis of all available evidence.
+At its core, NMA relies on the **consistency assumption** which states that the indirect estimate should match up with the direct estimate when you have both available.
 
-## Why Should Data Scientists Care?
+Suppose, Study 1 shows A beats placebo by 10 units. Study 2 shows B beats placebo by 6 units. The indirect math says A beats B by 4 units. If a third study directly compares A and B and finds A wins by 4 units, we've got consistency.
 
-The core methodology underlying network meta-analysis, has far-reaching implications wherever comparisons between several possible courses of action have to be made based on incomplete data.
+Here's roughly how the statistical model works.
 
-In machine learning research, *Algorithm A* might be benchmarked on *ImageNet* in one study and beats a standard algorithm, while *Algorithm B* is shown to beat the same standard algorithm on CIFAR-10 in another study. What can be said about the relative merits of these algorithms? Applying the ideas behind network meta-analysis, we should be able to rank these algorithms, by comparing performance on these different benchmarks where there are common baselines.
+First, you **define treatment effects**. Each treatment gets an effect estimate relative to a common reference, usually placebo.
 
-Similarly, with policy evaluation: if we know that *Policy X* in *Country A* and *Policy Y* in *Country B*, had some effect on unemployment there - how does one compare them? Network methods offer a way to synthesise this kind of evidence, even when studies were conducted in rather different settings. This could lead to better decision-making with respect to which policies should be taken up where.
+Then, you **combine direct and indirect evidence**. When both exist for a comparison, they get combined using inverse-variance weighting. More precise estimates from larger studies carry more weight.
 
-For data scientists, understanding NMA reinforces several important principles:
+Next, you **estimate uncertainty**. Bayesian methods give you not just point estimates but full probability distributions. So you know how confident to be in each ranking.
 
-- **Evidence synthesis**: Combining information from multiple sources is often more powerful than any single study
-- **Dealing with missing data**: Real-world data rarely has complete head-to-head comparisons
-- **Uncertainty quantification**: Bayesian methods give us probability statements, not just point estimates
+Finally, you **rank the treatments**. There's a metric called **SUCRA**, Surface Under the Cumulative Ranking Curve. It summarizes the probability that each treatment is best, second-best, third-best, and so on. A SUCRA of 100% means the treatment is definitely best and 0% means it's definitely worst.
 
-## Limitations to Keep in Mind
+The Gupta study ran 200,000 iterations of Markov Chain Monte Carlo sampling. That's a lot of computation to make sure the results were stable.
 
-Like any statistical method, network meta-analysis comes with assumptions and limitations.
+## Why This Matters
 
-The most critical assumption is **transitivity**: the indirect comparisons are only valid if the studies are similar enough in terms of patient populations, treatment protocols, and outcome measures. If the studies in your network are fundamentally different, the indirect comparisons become unreliable.
+Think about someone standing in a pharmacy. They're staring at the hair loss products. They want to know which one to buy.
 
-**Heterogeneity** is another concern. Even when studies appear similar, there may be underlying differences that affect results. Good NMA studies explicitly test for and report heterogeneity.
+Network meta-analysis gives them something real. A **ranking based on all available evidence**. Not marketing. Not one cherry-picked study.
 
-Finally, **publication bias** can distort the network. Studies with positive results are more likely to be published, meaning the network may be missing evidence from failed trials.
+Before this analysis, you might read one study showing finasteride works. Another showing minoxidil works. And you'd have no way to compare them. The NMA pulls together decades of clinical research into a clear order.
+
+1. Dutasteride 0.5 mg/day (most effective)
+2. Finasteride 5 mg/day
+3. Oral minoxidil 5 mg/day
+4. Finasteride 1 mg/day (the FDA-approved dose)
+5. Topical minoxidil 5%
+6. Topical minoxidil 2%
+7. Oral minoxidil 0.25 mg/day
+
+This ranking is useful for patients and doctors to make informed decisions. It also shows gaps in the evidence, for example, dutasteride's long-term efficacy at 48 weeks was not well-studied. This gives researchers a clear direction for future research.
+
+## The Limitations
+
+Network meta-analysis isn't magic. It depends on some key assumptions holding up.
+
+**Transitivity**: The studies being combined need to be similar enough that indirect comparisons make sense. If Study 1 enrolled young patients and Study 2 enrolled elderly patients, comparing their results through a common placebo might mislead you.
+
+**Consistency**: When you have both direct and indirect evidence, they should roughly agree. Big inconsistencies suggest problems with assumptions.
+
+**Publication bias**: If negative studies never get published, your network only includes treatments that looked like they worked. That can inflate the effectiveness estimates.
+
+The Gupta study dealt with these issues. They assessed study quality using the Cochrane risk-of-bias tool. They evaluated network-wide evidence quality using the CINeMA framework. Gupta found that the evidence quality ranged from low to moderate for most comparisons. This is a common finding in NMA which reflects the imperfect nature of real-world clinical evidence.
 
 ## Conclusion
 
-Network meta-analysis transforms fragmented evidence into actionable insights. Instead of sifting through dozens of individual studies, each with its own limitations, NMA provides a systematic framework for ranking multiple options simultaneously.
+Network meta-analysis takes scattered clinical evidence and turns it into something useful. Rankings you can actually act on.
 
-The hair loss case study illustrates this beautifully. Faced with a pharmacy shelf of competing products, each claiming superiority, the network meta-analysis delivers a clear answer: Minoxidil 5% applied twice daily is the most effective OTC option, backed by synthesized evidence from multiple trials.
+Treatments can be compared indirectly through common reference points. That lets us answer questions no single trial could handle such as, "Which of these many treatments is actually best?".
 
-For data science students and practitioners, NMA represents an important tool in the evidence synthesis toolkit. The next time you face a decision with multiple options and conflicting claims, ask yourself: has anyone done a network meta-analysis on this? If not, maybe you should be the one to do it.
+For hair loss, Gupta's 2022 analysis gave a clear answer, oral dutasteride leads with higher-dose finasteride coming in next with topical minoxidil trailing behind. This NMA study is not the final word. New head-to-head trials will come along, the network will grow and estimates will become more precise.
 
-Data literacy is not just about analyzing datasets — it's about making better decisions in everyday life. And sometimes, that means knowing which questions to ask and which methods can answer them.
+The next time you are facing a decision with multiple options and conflicting evidence, look for a network meta-analysis. It might cut through the noise and show you what the data actually says.
 
 ## References
-
-Gupta, A. K., Talukder, M., Keene, S., Williams, G., & Bamimore, M. A. (2025). Comparative Effect of Conventional and Non-Conventional Over-the-Counter Treatments for Male Androgenetic Alopecia: A Systematic Review and Network Meta-Analysis. *International Journal of Molecular Sciences*. PMID: 40869239.
