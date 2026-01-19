@@ -9,7 +9,7 @@
 <meta name="author" content="Jiro Amato">
 <meta name="dcterms.date" content="2026-01-17">
 
-<title>Why the Most Advertised Hair Loss Treatment Isn’t Always the Best – Jiro's World</title>
+<title>What Your Pharmacy Shelves Won’t Tell You About Hair Loss Treatment – Jiro's World</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,7 +57,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -158,12 +178,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-pharmacy-aisle-problem" id="toc-the-pharmacy-aisle-problem" class="nav-link active" data-scroll-target="#the-pharmacy-aisle-problem">The Pharmacy Aisle Problem</a></li>
-  <li><a href="#the-limitation-of-traditional-studies" id="toc-the-limitation-of-traditional-studies" class="nav-link" data-scroll-target="#the-limitation-of-traditional-studies">The Limitation of Traditional Studies</a></li>
-  <li><a href="#what-is-network-meta-analysis" id="toc-what-is-network-meta-analysis" class="nav-link" data-scroll-target="#what-is-network-meta-analysis">What is Network Meta-Analysis?</a></li>
-  <li><a href="#case-study-which-hair-loss-treatment-actually-works-best" id="toc-case-study-which-hair-loss-treatment-actually-works-best" class="nav-link" data-scroll-target="#case-study-which-hair-loss-treatment-actually-works-best">Case Study: Which Hair Loss Treatment Actually Works Best?</a></li>
-  <li><a href="#why-should-data-scientists-care" id="toc-why-should-data-scientists-care" class="nav-link" data-scroll-target="#why-should-data-scientists-care">Why Should Data Scientists Care?</a></li>
-  <li><a href="#limitations-to-keep-in-mind" id="toc-limitations-to-keep-in-mind" class="nav-link" data-scroll-target="#limitations-to-keep-in-mind">Limitations to Keep in Mind</a></li>
+  <li><a href="#the-problem-too-many-treatments-not-enough-comparisons" id="toc-the-problem-too-many-treatments-not-enough-comparisons" class="nav-link active" data-scroll-target="#the-problem-too-many-treatments-not-enough-comparisons">The Problem: Too Many Treatments, Not Enough Comparisons</a></li>
+  <li><a href="#indirect-comparisons-through-a-common-reference" id="toc-indirect-comparisons-through-a-common-reference" class="nav-link" data-scroll-target="#indirect-comparisons-through-a-common-reference">Indirect Comparisons Through a Common Reference</a></li>
+  <li><a href="#building-out-the-network" id="toc-building-out-the-network" class="nav-link" data-scroll-target="#building-out-the-network">Building Out the Network</a></li>
+  <li><a href="#case-study-ranking-hair-loss-treatments" id="toc-case-study-ranking-hair-loss-treatments" class="nav-link" data-scroll-target="#case-study-ranking-hair-loss-treatments">Case Study: Ranking Hair Loss Treatments</a></li>
+  <li><a href="#under-the-hood" id="toc-under-the-hood" class="nav-link" data-scroll-target="#under-the-hood">Under the Hood</a></li>
+  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters">Why This Matters</a></li>
+  <li><a href="#the-limitations" id="toc-the-limitations" class="nav-link" data-scroll-target="#the-limitations">The Limitations</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -174,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Why the Most Advertised Hair Loss Treatment Isn’t Always the Best</h1>
+<h1 class="title">What Your Pharmacy Shelves Won’t Tell You About Hair Loss Treatment</h1>
 <p class="subtitle lead">A Data Science Approach to Comparing Treatments with Network Meta-Analysis</p>
   <div class="quarto-categories">
     <div class="quarto-category">data science</div>
@@ -210,142 +231,186 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="the-pharmacy-aisle-problem" class="level2">
-<h2 class="anchored" data-anchor-id="the-pharmacy-aisle-problem">The Pharmacy Aisle Problem</h2>
-<p>You are standing in a pharmacy, staring at a shelf full of hair loss treatments. Each product claims to be “clinically proven” and “most effective solution.” A barber suggested one product, a friend of yours swears by another and the Internet has thousand of conflicting opinions. So how do you actually know which one is the best?</p>
-<p>This is not just a problem of hair loss. No matter whether you are choosing medicine, a software or a learning strategy, we face the situation where there are many options, each of them is proved with some evidence and the results are never compared with each other.</p>
-<p>Traditional clinical trials are comparing one treatment with a placebo and comparing two treatments. What happens if there are 9 treatments and there are only few experiments. This is where <strong>Network Meta-Analysis (NMA)</strong> comes in - statistical methods of comparisons of many treatments at the same time, even if it has never been compared with each other before.</p>
+<section id="the-problem-too-many-treatments-not-enough-comparisons" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-too-many-treatments-not-enough-comparisons">The Problem: Too Many Treatments, Not Enough Comparisons</h2>
+<p>Imagine that you are experiencing hair loss and you want to do something about it. You go online and find three main options for treatment. Minoxidil (commonly known as Rogaine), finasteride and dutasteride. Each one has studies showing it beats a placebo. Great. But which one actually works <em>best</em>?</p>
+<p>The frustrating part for the consumer is that most clinical trials only test one treatment against a placebo. Sometimes they’ll compare two treatments directly. But running trials that compare every possible pair? That’s expensive, takes time and as more treatments hit the market, it becomes basically impossible.</p>
+<p>So how do researchers figure out which treatment ranks first when they’ve never been directly compared?</p>
+<p>That’s where <strong>network meta-analysis</strong> (NMA) comes in.</p>
 </section>
-<section id="the-limitation-of-traditional-studies" class="level2">
-<h2 class="anchored" data-anchor-id="the-limitation-of-traditional-studies">The Limitation of Traditional Studies</h2>
-<p>The randomized controlled trial is the gold-standard of evidence in clinical research. It’s a simple design: take a group of patients, give half of them the treatment and the other half a placebo, then compare the outcomes. The problem is this: suppose <em>Study A</em> shows that <em>Treatment X</em> beats the placebo by increasing hair density by 20 hairs per square centimeter and <em>Study B</em> shows <em>Treatment Y</em> beats the placebo by increasing density by 15 hairs per square centimeter. Can we conclude that <em>Treatment X</em> is better than <em>Treatment Y</em>? Not quite. These two studies may have been conducted on different populations, at different times and using different measurement techniques. For example, the patients in <em>Study A</em> might have been younger or had more severe hair loss to begin with. To directly compare results across studies would be to compare apples and oranges.</p>
-<p>There is a real world problem here for both consumers and healthcare providers. When faced with multiple treatment options, each supported by a separate study (or studies) against the placebo, which one should you go with? How do you rank them? How do you make an informed choice?</p>
+<section id="indirect-comparisons-through-a-common-reference" class="level2">
+<h2 class="anchored" data-anchor-id="indirect-comparisons-through-a-common-reference">Indirect Comparisons Through a Common Reference</h2>
+<p>Network meta-analysis is built on a simple idea. If we know how <em>Treatment A</em> compares to a placebo, and how <em>Treatment B</em> compares to that same placebo, we can estimate how <em>A</em> and <em>B</em> compare to each other.</p>
+<p>Let’s make this concrete with numbers.</p>
+<p>Suppose <em>Study 1</em> finds that finasteride increases hair count by 15 hairs/cm² compared to placebo and <em>Study 2</em> finds that minoxidil increases hair count by 12 hairs/cm² compared to placebo.</p>
+<p>In this case, finasteride and minoxidil were never tested head-to-head. However, we can still infer that finasteride is roughly 3 hairs/cm² more effective (15 - 12 = 3).</p>
+<p>This is called an <strong>indirect comparison</strong>. The placebo serves as the <strong>common comparator</strong> which acts as the bridge connecting the two treatments.</p>
 </section>
-<section id="what-is-network-meta-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-network-meta-analysis">What is Network Meta-Analysis?</h2>
-<p>Network Meta-Analysis solves this problem by creating a connected “network” of evidence. Instead of treating each study in isolation, NMA links studies together through their common comparators which is usually placebo.</p>
-<p>Think of it like comparing athletes who never competed directly. If <em>Runner A</em> beats <em>Runner C</em> by 5 seconds, and <em>Runner B</em> beats <em>Runner C</em> by 3 seconds, we can reasonably infer that <em>Runner B</em> is probably faster than <em>Runner A</em> by about 2 seconds. The common reference point (<em>Runner C</em>) allows us to make indirect comparisons.</p>
-<p>In NMA, we work with three types of evidence:</p>
-<ol type="1">
-<li><strong>Direct evidence</strong>: Head-to-head trials where treatments were compared directly</li>
-<li><strong>Indirect evidence</strong>: Comparisons made through a common comparator (like placebo)</li>
-<li><strong>Mixed evidence</strong>: The combination of both direct and indirect evidence</li>
-</ol>
+<section id="building-out-the-network" class="level2">
+<h2 class="anchored" data-anchor-id="building-out-the-network">Building Out the Network</h2>
+<p>The real power of NMA comes when we have many treatments and many studies. You can picture all the evidence as a network. Each treatment is a <strong>node</strong>, including placebo. Each line (<strong>edge</strong>) between nodes represents studies that directly compared those two treatments (<strong>direct comparison</strong>).</p>
 <p>The magic of NMA is that it synthesizes all available evidence into a coherent framework. Even if Treatment X and Treatment Y were never tested against each other, we can estimate their relative effectiveness through their shared connections to other treatments in the network.</p>
 <div id="cell-fig-network" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a network graph</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add nodes (treatments) - based on Gupta et al. 2025</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>treatments <span class="op">=</span> [<span class="st">'Control'</span>, <span class="st">'Minoxidil 5%'</span>, <span class="st">'Minoxidil 2%'</span>, <span class="st">'Melatonin'</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>              <span class="st">'Rosemary'</span>, <span class="st">'Marine Complex'</span>, <span class="st">'Procyanidin'</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>              <span class="st">'Saw Palmetto'</span>, <span class="st">'Ketoconazole'</span>, <span class="st">'Watercress'</span>]</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>G.add_nodes_from(treatments)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add edges (studies comparing treatments) - based on Figure 3</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>edges <span class="op">=</span> [</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'Control'</span>, <span class="st">'Minoxidil 5%'</span>),</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'Control'</span>, <span class="st">'Minoxidil 2%'</span>),</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'Control'</span>, <span class="st">'Marine Complex'</span>),</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'Control'</span>, <span class="st">'Procyanidin'</span>),</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'Control'</span>, <span class="st">'Watercress'</span>),</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'Minoxidil 2%'</span>, <span class="st">'Minoxidil 5%'</span>),</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'Minoxidil 2%'</span>, <span class="st">'Rosemary'</span>),</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'Minoxidil 2%'</span>, <span class="st">'Ketoconazole'</span>),</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'Minoxidil 2%'</span>, <span class="st">'Melatonin'</span>),</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'Saw Palmetto'</span>, <span class="st">'Control'</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>G.add_edges_from(edges)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the network</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> nx.spring_layout(G, seed<span class="op">=</span><span class="dv">42</span>, k<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw nodes with different colors</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>node_colors <span class="op">=</span> [<span class="st">'lightgray'</span> <span class="cf">if</span> n <span class="op">==</span> <span class="st">'Control'</span> <span class="cf">else</span> <span class="st">'skyblue'</span> <span class="cf">for</span> n <span class="kw">in</span> G.nodes()]</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_nodes(G, pos, node_color<span class="op">=</span>node_colors, node_size<span class="op">=</span><span class="dv">1500</span>, alpha<span class="op">=</span><span class="fl">0.9</span>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_labels(G, pos, font_size<span class="op">=</span><span class="dv">7</span>, font_weight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_edges(G, pos, width<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, edge_color<span class="op">=</span><span class="st">'gray'</span>)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Network of Treatment Comparisons'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.Graph()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Nodes</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>treatments <span class="op">=</span> [</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Placebo"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Minoxidil 2%</span><span class="ch">\n</span><span class="st">(topical)"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Minoxidil 5%</span><span class="ch">\n</span><span class="st">(topical)"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Minoxidil 0.25mg</span><span class="ch">\n</span><span class="st">(oral)"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Minoxidil 5mg</span><span class="ch">\n</span><span class="st">(oral)"</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Finasteride 1mg</span><span class="ch">\n</span><span class="st">(oral)"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Finasteride 5mg</span><span class="ch">\n</span><span class="st">(oral)"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Dutasteride 0.5mg</span><span class="ch">\n</span><span class="st">(oral)"</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>G.add_nodes_from(treatments)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Edges</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>edges <span class="op">=</span> [</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Placebo"</span>, <span class="st">"Minoxidil 2%</span><span class="ch">\n</span><span class="st">(topical)"</span>, <span class="dv">6</span>),</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Placebo"</span>, <span class="st">"Minoxidil 5%</span><span class="ch">\n</span><span class="st">(topical)"</span>, <span class="dv">2</span>),</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Placebo"</span>, <span class="st">"Finasteride 1mg</span><span class="ch">\n</span><span class="st">(oral)"</span>, <span class="dv">4</span>),</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Placebo"</span>, <span class="st">"Finasteride 5mg</span><span class="ch">\n</span><span class="st">(oral)"</span>, <span class="dv">1</span>),</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Placebo"</span>, <span class="st">"Dutasteride 0.5mg</span><span class="ch">\n</span><span class="st">(oral)"</span>, <span class="dv">2</span>),</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Minoxidil 2%</span><span class="ch">\n</span><span class="st">(topical)"</span>, <span class="st">"Minoxidil 5%</span><span class="ch">\n</span><span class="st">(topical)"</span>, <span class="dv">2</span>),</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Minoxidil 2%</span><span class="ch">\n</span><span class="st">(topical)"</span>, <span class="st">"Finasteride 1mg</span><span class="ch">\n</span><span class="st">(oral)"</span>, <span class="dv">1</span>),</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Finasteride 1mg</span><span class="ch">\n</span><span class="st">(oral)"</span>, <span class="st">"Finasteride 5mg</span><span class="ch">\n</span><span class="st">(oral)"</span>, <span class="dv">1</span>),</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Finasteride 1mg</span><span class="ch">\n</span><span class="st">(oral)"</span>, <span class="st">"Dutasteride 0.5mg</span><span class="ch">\n</span><span class="st">(oral)"</span>, <span class="dv">2</span>),</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Minoxidil 0.25mg</span><span class="ch">\n</span><span class="st">(oral)"</span>, <span class="st">"Placebo"</span>, <span class="dv">1</span>),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Minoxidil 5mg</span><span class="ch">\n</span><span class="st">(oral)"</span>, <span class="st">"Placebo"</span>, <span class="dv">1</span>),</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>G.add_weighted_edges_from(edges)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> nx.spring_layout(G, k<span class="op">=</span><span class="dv">2</span>, iterations<span class="op">=</span><span class="dv">50</span>, seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>node_sizes <span class="op">=</span> [<span class="dv">800</span> <span class="op">+</span> <span class="dv">400</span> <span class="op">*</span> G.degree(node) <span class="cf">for</span> node <span class="kw">in</span> G.nodes()]</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>color_map <span class="op">=</span> []</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> node <span class="kw">in</span> G.nodes():</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"Placebo"</span> <span class="kw">in</span> node:</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        color_map.append(<span class="st">"#95a5a6"</span>)  <span class="co"># Gray for placebo</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="st">"Dutasteride"</span> <span class="kw">in</span> node:</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        color_map.append(<span class="st">"#e74c3c"</span>)  <span class="co"># Red for dutasteride</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> <span class="st">"Finasteride"</span> <span class="kw">in</span> node:</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        color_map.append(<span class="st">"#3498db"</span>)  <span class="co"># Blue for finasteride</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>        color_map.append(<span class="st">"#2ecc71"</span>)  <span class="co"># Green for minoxidil</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>edge_weights <span class="op">=</span> [G[u][v][<span class="st">'weight'</span>] <span class="op">*</span> <span class="fl">1.5</span> <span class="cf">for</span> u, v <span class="kw">in</span> G.edges()]</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_edges(G, pos, width<span class="op">=</span>edge_weights, alpha<span class="op">=</span><span class="fl">0.6</span>, edge_color<span class="op">=</span><span class="st">"#7f8c8d"</span>)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_nodes(G, pos, node_color<span class="op">=</span>color_map, node_size<span class="op">=</span>node_sizes, alpha<span class="op">=</span><span class="fl">0.9</span>)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx_labels(G, pos, font_size<span class="op">=</span><span class="dv">8</span>, font_weight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>legend_elements <span class="op">=</span> [</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    plt.scatter([], [], c<span class="op">=</span><span class="st">"#95a5a6"</span>, s<span class="op">=</span><span class="dv">150</span>, label<span class="op">=</span><span class="st">"Placebo"</span>),</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    plt.scatter([], [], c<span class="op">=</span><span class="st">"#e74c3c"</span>, s<span class="op">=</span><span class="dv">150</span>, label<span class="op">=</span><span class="st">"Dutasteride"</span>),</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    plt.scatter([], [], c<span class="op">=</span><span class="st">"#3498db"</span>, s<span class="op">=</span><span class="dv">150</span>, label<span class="op">=</span><span class="st">"Finasteride"</span>),</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    plt.scatter([], [], c<span class="op">=</span><span class="st">"#2ecc71"</span>, s<span class="op">=</span><span class="dv">150</span>, label<span class="op">=</span><span class="st">"Minoxidil"</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>ax.legend(handles<span class="op">=</span>legend_elements, loc<span class="op">=</span><span class="st">"upper left"</span>, title<span class="op">=</span><span class="st">"Treatment Type"</span>)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Network of Hair Loss Treatment Comparisons</span><span class="ch">\n</span><span class="st">(Gupta et al. 2022)"</span>,</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-network" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-network" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-network-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="index_files/figure-html/fig-network-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="662" height="469">
+<img src="index_files/figure-html/fig-network-output-1.png" width="758" height="564" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-network-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: A simplified network diagram showing how treatments connect through common comparators. Each node represents a treatment, and each edge represents studies comparing those treatments.
+Figure&nbsp;1: Network of treatment comparisons from the Gupta et al.&nbsp;2022 study. Each node represents a treatment, and edges connect treatments that were directly compared in clinical trials. Node size reflects the number of studies involving that treatment, and edge thickness represents the number of direct comparisons.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Most modern NMA studies use a <strong>Bayesian statistical framework</strong>. Without diving too deep into the mathematics, this approach allows researchers to make probability statements like “there is a 95% probability that Treatment X is the most effective option.” This is incredibly useful for decision-making because it directly answers the question we care about: which treatment should I choose?</p>
+<p>The figure above shows the network from the Gupta study. Notice how placebo sits at the center, connecting to most treatments. This is typical since many trials compare a new treatment against placebo. The lines between treatments represent direct head-to-head comparisons from clinical trials.</p>
+<p>Sometimes researchers have both direct evidence and indirect evidence for the same comparison. NMA combines them mathematically to get the most precise estimate possible. This combination of direct and indirect evidence is called <strong>mixed treatment comparison</strong>.</p>
+<p>Mixed treatment comparison uses weighted averages. Larger sampled studies with less variability contribute more to the final estmation. Most modern NMA uses Bayesian statistics to quantify uncertainty and provide an estimation. This allows researchers to say things like “there’s a 96% chance <em>Treatment A</em> is the most effective.”.</p>
 </section>
-<section id="case-study-which-hair-loss-treatment-actually-works-best" class="level2">
-<h2 class="anchored" data-anchor-id="case-study-which-hair-loss-treatment-actually-works-best">Case Study: Which Hair Loss Treatment Actually Works Best?</h2>
-<p>In August 2025, Gupta and colleagues published a landmark study in the <em>International Journal of Molecular Sciences</em> that applied NMA to answer a question millions of people have asked: among all the over-the-counter hair loss treatments available, which one actually works best?</p>
-<p>A systematic review was conducted by gathering data from multiple clinical trials that lasted for 24 weeks and evaluated changes in hair density. Nine active treatments were identified, including minoxidil and its various concentrations and several non-conventional treatments that gained popularity within the last few years.</p>
-<p>Here’s where NMA shines. Instead of simply listing what each individual study found, the researchers connected all the evidence through common comparators. This allowed them to rank all nine treatments simultaneously, even though most had never been tested head-to-head.</p>
-<p>The result? <strong>Minoxidil 5% applied twice daily emerged as the most effective over-the-counter treatment for male androgenetic alopecia.</strong></p>
-<div id="cell-fig-ranking" class="cell" data-execution_count="2">
+<section id="case-study-ranking-hair-loss-treatments" class="level2">
+<h2 class="anchored" data-anchor-id="case-study-ranking-hair-loss-treatments">Case Study: Ranking Hair Loss Treatments</h2>
+<p>In 2022, Gupta and colleagues published a NMA in <em>JAMA Dermatology</em> <span class="citation" data-cites="gupta2022">(<a href="#ref-gupta2022" role="doc-biblioref">Gupta et al. 2022</a>)</span>. They wanted to answer exactly this question, “Among minoxidil, finasteride, and dutasteride, which works best for male pattern hair loss?”.</p>
+<p>They took data from 23 clinical trials spanning several decades. The studies looked at different doses and formulations of the following treatments:</p>
+<ul>
+<li>Oral dutasteride at 0.5 mg/day</li>
+<li>Oral finasteride at 1 mg/day and 5 mg/day</li>
+<li>Topical minoxidil in 2% and 5% solutions</li>
+<li>Oral minoxidil at 0.25 mg/day and 5 mg/day</li>
+<li>Placebo</li>
+</ul>
+<p>Most studies compared a single treatment to placebo and only a few went head-to-head. By connecting all the studies through the network, the researchers could rank all treatments at once.</p>
+<p>The results were clear. At 24 weeks, oral dutasteride (0.5 mg/day) came out on top. It had a SUCRA score of 96%. Then oral finasteride 5 mg at 88%. Topical minoxidil 5% at 80%. Oral finasteride 1 mg at 65%.</p>
+<div id="cell-fig-sucra-ranking" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Actual SUCRA values from Gupta et al. 2025 (Figure 4)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># SUCRA values from Gupta et al. 2022, Figure 3 (Column A: Total hair count at 24 weeks)</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Treatment'</span>: [<span class="st">'Minoxidil 5%'</span>, <span class="st">'Melatonin'</span>, <span class="st">'Rosemary'</span>, <span class="st">'Marine Complex'</span>,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'Minoxidil 2%'</span>, <span class="st">'Procyanidin'</span>, <span class="st">'Watercress'</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'Ketoconazole'</span>, <span class="st">'Saw Palmetto'</span>, <span class="st">'Control'</span>],</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'SUCRA'</span>: [<span class="fl">99.7</span>, <span class="fl">62.7</span>, <span class="fl">60.6</span>, <span class="fl">57.5</span>, <span class="fl">56.3</span>, <span class="fl">55.6</span>, <span class="fl">42.9</span>, <span class="fl">34.9</span>, <span class="fl">17.8</span>, <span class="fl">12.1</span>]</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>chart <span class="op">=</span> alt.Chart(data).mark_bar().encode(</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'SUCRA:Q'</span>, title<span class="op">=</span><span class="st">'SUCRA Value (%)'</span>, scale<span class="op">=</span>alt.Scale(domain<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">100</span>])),</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'Treatment:N'</span>, sort<span class="op">=</span><span class="st">'-x'</span>, title<span class="op">=</span><span class="va">None</span>),</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(<span class="st">'SUCRA:Q'</span>, scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">'blues'</span>), legend<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>).properties(</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Ranking of OTC Hair Loss Treatments (Gupta et al. 2025)'</span>,</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">400</span>,</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">300</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>chart</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Treatment'</span>: [</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Dutasteride 0.5mg (oral)'</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Finasteride 5mg (oral)'</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Minoxidil 5% (topical)'</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Finasteride 1mg (oral)'</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Minoxidil 2% (topical)'</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Minoxidil 5mg (oral)'</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Placebo'</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Minoxidil 0.25mg (oral)'</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'SUCRA'</span>: [<span class="fl">95.7</span>, <span class="fl">87.8</span>, <span class="fl">80.4</span>, <span class="fl">65.2</span>, <span class="fl">55.3</span>, <span class="fl">29.6</span>, <span class="fl">13.5</span>, <span class="fl">8.4</span>]</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>chart <span class="op">=</span> alt.Chart(data).mark_bar().encode(</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'SUCRA:Q'</span>, title<span class="op">=</span><span class="st">'SUCRA Value (%)'</span>, scale<span class="op">=</span>alt.Scale(domain<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">100</span>])),</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'Treatment:N'</span>, sort<span class="op">=</span><span class="st">'-x'</span>, title<span class="op">=</span><span class="va">None</span>),</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(<span class="st">'SUCRA:Q'</span>, scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">'viridis'</span>), legend<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>).properties(</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Efficacy Ranking of Hair Loss Treatments (Gupta et al. 2022)'</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="st">'container'</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">280</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>chart</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="fig-ranking" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
+<div id="fig-sucra-ranking" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ranking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-sucra-ranking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 
 <style>
-  #altair-viz-61c06a99ae4342649a837a291e4c900a.vega-embed {
+  #altair-viz-2159873d68d74d40b648735484a636eb.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-61c06a99ae4342649a837a291e4c900a.vega-embed details,
-  #altair-viz-61c06a99ae4342649a837a291e4c900a.vega-embed details summary {
+  #altair-viz-2159873d68d74d40b648735484a636eb.vega-embed details,
+  #altair-viz-2159873d68d74d40b648735484a636eb.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-61c06a99ae4342649a837a291e4c900a"></div>
+<div id="altair-viz-2159873d68d74d40b648735484a636eb"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-61c06a99ae4342649a837a291e4c900a") {
-      outputDiv = document.getElementById("altair-viz-61c06a99ae4342649a837a291e4c900a");
+    if (outputDiv.id !== "altair-viz-2159873d68d74d40b648735484a636eb") {
+      outputDiv = document.getElementById("altair-viz-2159873d68d74d40b648735484a636eb");
     }
 
     const paths = {
@@ -393,52 +458,70 @@ Figure&nbsp;1: A simplified network diagram showing how treatments connect throu
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-27d169bae0f3b9e9087a8c6ceb74277e"}, "mark": {"type": "bar"}, "encoding": {"color": {"field": "SUCRA", "legend": null, "scale": {"scheme": "blues"}, "type": "quantitative"}, "x": {"field": "SUCRA", "scale": {"domain": [0, 100]}, "title": "SUCRA Value (%)", "type": "quantitative"}, "y": {"field": "Treatment", "sort": "-x", "title": null, "type": "nominal"}}, "height": 300, "title": "Ranking of OTC Hair Loss Treatments (Gupta et al. 2025)", "width": 400, "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-27d169bae0f3b9e9087a8c6ceb74277e": [{"Treatment": "Minoxidil 5%", "SUCRA": 99.7}, {"Treatment": "Melatonin", "SUCRA": 62.7}, {"Treatment": "Rosemary", "SUCRA": 60.6}, {"Treatment": "Marine Complex", "SUCRA": 57.5}, {"Treatment": "Minoxidil 2%", "SUCRA": 56.3}, {"Treatment": "Procyanidin", "SUCRA": 55.6}, {"Treatment": "Watercress", "SUCRA": 42.9}, {"Treatment": "Ketoconazole", "SUCRA": 34.9}, {"Treatment": "Saw Palmetto", "SUCRA": 17.8}, {"Treatment": "Control", "SUCRA": 12.1}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-3a74f492d9152e263dfe7b29321e3ba1"}, "mark": {"type": "bar"}, "encoding": {"color": {"field": "SUCRA", "legend": null, "scale": {"scheme": "viridis"}, "type": "quantitative"}, "x": {"field": "SUCRA", "scale": {"domain": [0, 100]}, "title": "SUCRA Value (%)", "type": "quantitative"}, "y": {"field": "Treatment", "sort": "-x", "title": null, "type": "nominal"}}, "height": 280, "title": "Efficacy Ranking of Hair Loss Treatments (Gupta et al. 2022)", "width": "container", "$schema": "https://vega.github.io/schema/vega-lite/v6.1.0.json", "datasets": {"data-3a74f492d9152e263dfe7b29321e3ba1": [{"Treatment": "Dutasteride 0.5mg (oral)", "SUCRA": 95.7}, {"Treatment": "Finasteride 5mg (oral)", "SUCRA": 87.8}, {"Treatment": "Minoxidil 5% (topical)", "SUCRA": 80.4}, {"Treatment": "Finasteride 1mg (oral)", "SUCRA": 65.2}, {"Treatment": "Minoxidil 2% (topical)", "SUCRA": 55.3}, {"Treatment": "Minoxidil 5mg (oral)", "SUCRA": 29.6}, {"Treatment": "Placebo", "SUCRA": 13.5}, {"Treatment": "Minoxidil 0.25mg (oral)", "SUCRA": 8.4}]}}, {"mode": "vega-lite"});
 </script>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ranking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Ranking of OTC hair loss treatments based on SUCRA values from Gupta et al.&nbsp;2025. Minoxidil 5% shows the highest effectiveness.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sucra-ranking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: SUCRA rankings for hair loss treatments at 24 weeks (total hair count). Higher values indicate greater probability of being the most effective treatment. Data from Gupta et al.&nbsp;2022.
 </figcaption>
 </figure>
 </div>
 </div>
-<p>We can draw several conclusions from this study that could have a real world impact on treatment. We see a lot of products on the pharmacy shelf making big claims and this analysis helps cut through the noise. Across all the different alternatives with different marketing budgets, the one that consistently comes out as the best performing treatment is minoxidil 5% applied twice daily.</p>
-<p>For someone like John, a 25-year-old professional who has been researching hair loss treatments and feeling overwhelmed by conflicting information, this kind of revelation is invaluable. Instead of relying on anecdotes or advertisements, he can base his decision on a rigorous analysis of all available evidence.</p>
 </section>
-<section id="why-should-data-scientists-care" class="level2">
-<h2 class="anchored" data-anchor-id="why-should-data-scientists-care">Why Should Data Scientists Care?</h2>
-<p>The core methodology underlying network meta-analysis, has far-reaching implications wherever comparisons between several possible courses of action have to be made based on incomplete data.</p>
-<p>In machine learning research, <em>Algorithm A</em> might be benchmarked on <em>ImageNet</em> in one study and beats a standard algorithm, while <em>Algorithm B</em> is shown to beat the same standard algorithm on CIFAR-10 in another study. What can be said about the relative merits of these algorithms? Applying the ideas behind network meta-analysis, we should be able to rank these algorithms, by comparing performance on these different benchmarks where there are common baselines.</p>
-<p>Similarly, with policy evaluation: if we know that <em>Policy X</em> in <em>Country A</em> and <em>Policy Y</em> in <em>Country B</em>, had some effect on unemployment there - how does one compare them? Network methods offer a way to synthesise this kind of evidence, even when studies were conducted in rather different settings. This could lead to better decision-making with respect to which policies should be taken up where.</p>
-<p>For data scientists, understanding NMA reinforces several important principles:</p>
-<ul>
-<li><strong>Evidence synthesis</strong>: Combining information from multiple sources is often more powerful than any single study</li>
-<li><strong>Dealing with missing data</strong>: Real-world data rarely has complete head-to-head comparisons</li>
-<li><strong>Uncertainty quantification</strong>: Bayesian methods give us probability statements, not just point estimates</li>
-</ul>
+<section id="under-the-hood" class="level2">
+<h2 class="anchored" data-anchor-id="under-the-hood">Under the Hood</h2>
+<p>At its core, NMA relies on the <strong>consistency assumption</strong> which states that the indirect estimate should match up with the direct estimate when you have both available.</p>
+<p>Suppose, Study 1 shows A beats placebo by 10 units. Study 2 shows B beats placebo by 6 units. The indirect math says A beats B by 4 units. If a third study directly compares A and B and finds A wins by 4 units, we’ve got consistency.</p>
+<p>Here’s roughly how the statistical model works.</p>
+<p>First, you <strong>define treatment effects</strong>. Each treatment gets an effect estimate relative to a common reference, usually placebo.</p>
+<p>Then, you <strong>combine direct and indirect evidence</strong>. When both exist for a comparison, they get combined using inverse-variance weighting. More precise estimates from larger studies carry more weight.</p>
+<p>Next, you <strong>estimate uncertainty</strong>. Bayesian methods give you not just point estimates but full probability distributions. So you know how confident to be in each ranking.</p>
+<p>Finally, you <strong>rank the treatments</strong>. There’s a metric called <strong>SUCRA</strong>, Surface Under the Cumulative Ranking Curve. It summarizes the probability that each treatment is best, second-best, third-best, and so on. A SUCRA of 100% means the treatment is definitely best and 0% means it’s definitely worst.</p>
+<p>The Gupta study ran 200,000 iterations of Markov Chain Monte Carlo sampling. That’s a lot of computation to make sure the results were stable.</p>
 </section>
-<section id="limitations-to-keep-in-mind" class="level2">
-<h2 class="anchored" data-anchor-id="limitations-to-keep-in-mind">Limitations to Keep in Mind</h2>
-<p>Like any statistical method, network meta-analysis comes with assumptions and limitations.</p>
-<p>The most critical assumption is <strong>transitivity</strong>: the indirect comparisons are only valid if the studies are similar enough in terms of patient populations, treatment protocols, and outcome measures. If the studies in your network are fundamentally different, the indirect comparisons become unreliable.</p>
-<p><strong>Heterogeneity</strong> is another concern. Even when studies appear similar, there may be underlying differences that affect results. Good NMA studies explicitly test for and report heterogeneity.</p>
-<p>Finally, <strong>publication bias</strong> can distort the network. Studies with positive results are more likely to be published, meaning the network may be missing evidence from failed trials.</p>
+<section id="why-this-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-matters">Why This Matters</h2>
+<p>Think about someone standing in a pharmacy. They’re staring at the hair loss products. They want to know which one to buy.</p>
+<p>Network meta-analysis gives them something real. A <strong>ranking based on all available evidence</strong>. Not marketing. Not one cherry-picked study.</p>
+<p>Before this analysis, you might read one study showing finasteride works. Another showing minoxidil works. And you’d have no way to compare them. The NMA pulls together decades of clinical research into a clear order.</p>
+<ol type="1">
+<li>Dutasteride 0.5 mg/day (most effective)</li>
+<li>Finasteride 5 mg/day</li>
+<li>Oral minoxidil 5 mg/day</li>
+<li>Finasteride 1 mg/day (the FDA-approved dose)</li>
+<li>Topical minoxidil 5%</li>
+<li>Topical minoxidil 2%</li>
+<li>Oral minoxidil 0.25 mg/day</li>
+</ol>
+<p>This ranking is useful for patients and doctors to make informed decisions. It also shows gaps in the evidence, for example, dutasteride’s long-term efficacy at 48 weeks was not well-studied. This gives researchers a clear direction for future research.</p>
+</section>
+<section id="the-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="the-limitations">The Limitations</h2>
+<p>Network meta-analysis isn’t magic. It depends on some key assumptions holding up.</p>
+<p><strong>Transitivity</strong>: The studies being combined need to be similar enough that indirect comparisons make sense. If Study 1 enrolled young patients and Study 2 enrolled elderly patients, comparing their results through a common placebo might mislead you.</p>
+<p><strong>Consistency</strong>: When you have both direct and indirect evidence, they should roughly agree. Big inconsistencies suggest problems with assumptions.</p>
+<p><strong>Publication bias</strong>: If negative studies never get published, your network only includes treatments that looked like they worked. That can inflate the effectiveness estimates.</p>
+<p>The Gupta study dealt with these issues. They assessed study quality using the Cochrane risk-of-bias tool. They evaluated network-wide evidence quality using the CINeMA framework. Gupta found that the evidence quality ranged from low to moderate for most comparisons. This is a common finding in NMA which reflects the imperfect nature of real-world clinical evidence.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Network meta-analysis transforms fragmented evidence into actionable insights. Instead of sifting through dozens of individual studies, each with its own limitations, NMA provides a systematic framework for ranking multiple options simultaneously.</p>
-<p>The hair loss case study illustrates this beautifully. Faced with a pharmacy shelf of competing products, each claiming superiority, the network meta-analysis delivers a clear answer: Minoxidil 5% applied twice daily is the most effective OTC option, backed by synthesized evidence from multiple trials.</p>
-<p>For data science students and practitioners, NMA represents an important tool in the evidence synthesis toolkit. The next time you face a decision with multiple options and conflicting claims, ask yourself: has anyone done a network meta-analysis on this? If not, maybe you should be the one to do it.</p>
-<p>Data literacy is not just about analyzing datasets — it’s about making better decisions in everyday life. And sometimes, that means knowing which questions to ask and which methods can answer them.</p>
+<p>Network meta-analysis takes scattered clinical evidence and turns it into something useful. Rankings you can actually act on.</p>
+<p>Treatments can be compared indirectly through common reference points. That lets us answer questions no single trial could handle such as, “Which of these many treatments is actually best?”.</p>
+<p>For hair loss, Gupta’s 2022 analysis gave a clear answer, oral dutasteride leads with higher-dose finasteride coming in next with topical minoxidil trailing behind. This NMA study is not the final word. New head-to-head trials will come along, the network will grow and estimates will become more precise.</p>
+<p>The next time you are facing a decision with multiple options and conflicting evidence, look for a network meta-analysis. It might cut through the noise and show you what the data actually says.</p>
 </section>
 <section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Gupta, A. K., Talukder, M., Keene, S., Williams, G., &amp; Bamimore, M. A. (2025). Comparative Effect of Conventional and Non-Conventional Over-the-Counter Treatments for Male Androgenetic Alopecia: A Systematic Review and Network Meta-Analysis. <em>International Journal of Molecular Sciences</em>. PMID: 40869239.</p>
+
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-gupta2022" class="csl-entry" role="listitem">
+Gupta, Aditya K., Maanasa Venkataraman, Mesbah Talukder, and Mary A. Bamimore. 2022. <span>“Relative Efficacy of Minoxidil and the 5-α Reductase Inhibitors in Androgenetic Alopecia Treatment of Male Patients: A Network Meta-Analysis.”</span> <em>JAMA Dermatology</em> 158 (3): 266–74. <a href="https://doi.org/10.1001/jamadermatol.2021.5743">https://doi.org/10.1001/jamadermatol.2021.5743</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
