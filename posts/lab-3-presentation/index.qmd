@@ -1,0 +1,16 @@
+---
+title: "Lab 3 Presentation"
+author: "Jiro Amato"
+date: "2026-01-25"
+categories: [presentation]
+format:
+  html:
+    toc: true
+---
+
+![Global Hair Loss Statistics](hairlosstats.png)
+
+<!--
+To add your video later, replace the image above with:
+{{< video https://www.youtube.com/watch?v=YOUR_VIDEO_ID >}}
+-->

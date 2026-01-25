@@ -1,5 +1,117 @@
 [
   {
+    "objectID": "presentation/slides_structure.html",
+    "href": "presentation/slides_structure.html",
+    "title": "Slide Structure: The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "",
+    "text": "Applying Multimedia Learning Principles\nBased on the ~3 minute presentation length, aim for ~2-3 slides (formula: slides = ¾ × minutes). However, for visual storytelling, 4-5 focused slides work well with minimal text.\n\n\n\nTitle: The Most Advertised Treatment Isn’t Always the Most Effective\nVisual: Simple, clean design with a relevant image (e.g., pharmacy shelf or hair loss treatment bottles)\nPrinciples Applied: - Coherence: Keep it minimal - Personalization: Approachable title\n\n\n\n\nKey Visual: Infographic showing statistics - 25% of men before age 21 - 67% of men before age 35 - 50% of women over lifetime - $3 billion industry\nOn-screen text: Minimal - just the key numbers\nNarration covers: Full context from script\nPrinciples Applied: - Multimedia Principle: Statistics paired with visual - Modality Principle: Detailed explanation through narration, not text - Signaling Principle: Highlight key percentages\n\n\n\n\nKey Visual: Image of Rogaine/minoxidil prominently displayed OR pharmacy shelf visual\nOn-screen text: - “Most prominent ≠ Most effective”\nNarration covers: The disconnect between availability and effectiveness\nPrinciples Applied: - Coherence: One clear message per slide - Spatial Contiguity: Text near relevant visual\n\n\n\n\nKey Visual: Simple bar chart or ranking graphic showing:\n\n\n\nTreatment\nEffectiveness Score\n\n\n\n\nDutasteride\n96%\n\n\nFinasteride\n88%\n\n\nMinoxidil\n52%\n\n\n\nOptional secondary visual: DHT reduction comparison (92% vs 73% vs different mechanism)\nOn-screen text: Minimal - let the chart speak\nNarration covers: - JAMA Dermatology 2022 study - Network meta-analysis method - Why dutasteride/finasteride work better (DHT reduction)\nPrinciples Applied: - Multimedia Principle: Data visualization with narration - Signaling Principle: Use color/highlighting to emphasize the gap - Segmenting: Complex info broken into visual chunks\n\n\n\n\nKey Visual: Simple diagram showing how network meta-analysis connects studies that didn’t directly compare treatments\nOn-screen text: “Network Meta-Analysis” as header only\nNarration covers: Full explanation of the method\nPrinciples Applied: - Pre-Training: Visual helps audience understand the concept - Modality: Complex explanation via voice, simple visual support\n\n\n\n\nKey Visual: Simple icon or image (doctor consultation, prescription pad, or choice visual)\nOn-screen text: - “Accessibility ≠ Effectiveness” - “Talk to your doctor about all options”\nSmall footer: This is not medical advice.\nNarration covers: Why minoxidil is more advertised (OTC vs prescription) and the core message\nPrinciples Applied: - Coherence: Clear, actionable takeaway - Personalization: Direct, conversational tone - Signaling: Emphasize the key message\n\n\n\n\nContent: 1. Gupta, A.K., et al. (2022). JAMA Dermatology 2. American Hair Loss Association 3. Mordor Intelligence Market Report"
+  },
+  {
+    "objectID": "presentation/slides_structure.html#slide-1-title-slide",
+    "href": "presentation/slides_structure.html#slide-1-title-slide",
+    "title": "Slide Structure: The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "",
+    "text": "Title: The Most Advertised Treatment Isn’t Always the Most Effective\nVisual: Simple, clean design with a relevant image (e.g., pharmacy shelf or hair loss treatment bottles)\nPrinciples Applied: - Coherence: Keep it minimal - Personalization: Approachable title"
+  },
+  {
+    "objectID": "presentation/slides_structure.html#slide-2-the-hook---hair-loss-is-common",
+    "href": "presentation/slides_structure.html#slide-2-the-hook---hair-loss-is-common",
+    "title": "Slide Structure: The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "",
+    "text": "Key Visual: Infographic showing statistics - 25% of men before age 21 - 67% of men before age 35 - 50% of women over lifetime - $3 billion industry\nOn-screen text: Minimal - just the key numbers\nNarration covers: Full context from script\nPrinciples Applied: - Multimedia Principle: Statistics paired with visual - Modality Principle: Detailed explanation through narration, not text - Signaling Principle: Highlight key percentages"
+  },
+  {
+    "objectID": "presentation/slides_structure.html#slide-3-the-problem---what-you-see-isnt-what-works-best",
+    "href": "presentation/slides_structure.html#slide-3-the-problem---what-you-see-isnt-what-works-best",
+    "title": "Slide Structure: The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "",
+    "text": "Key Visual: Image of Rogaine/minoxidil prominently displayed OR pharmacy shelf visual\nOn-screen text: - “Most prominent ≠ Most effective”\nNarration covers: The disconnect between availability and effectiveness\nPrinciples Applied: - Coherence: One clear message per slide - Spatial Contiguity: Text near relevant visual"
+  },
+  {
+    "objectID": "presentation/slides_structure.html#slide-4-the-evidence---treatment-rankings",
+    "href": "presentation/slides_structure.html#slide-4-the-evidence---treatment-rankings",
+    "title": "Slide Structure: The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "",
+    "text": "Key Visual: Simple bar chart or ranking graphic showing:\n\n\n\nTreatment\nEffectiveness Score\n\n\n\n\nDutasteride\n96%\n\n\nFinasteride\n88%\n\n\nMinoxidil\n52%\n\n\n\nOptional secondary visual: DHT reduction comparison (92% vs 73% vs different mechanism)\nOn-screen text: Minimal - let the chart speak\nNarration covers: - JAMA Dermatology 2022 study - Network meta-analysis method - Why dutasteride/finasteride work better (DHT reduction)\nPrinciples Applied: - Multimedia Principle: Data visualization with narration - Signaling Principle: Use color/highlighting to emphasize the gap - Segmenting: Complex info broken into visual chunks"
+  },
+  {
+    "objectID": "presentation/slides_structure.html#slide-5-data-science-insight---network-meta-analysis",
+    "href": "presentation/slides_structure.html#slide-5-data-science-insight---network-meta-analysis",
+    "title": "Slide Structure: The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "",
+    "text": "Key Visual: Simple diagram showing how network meta-analysis connects studies that didn’t directly compare treatments\nOn-screen text: “Network Meta-Analysis” as header only\nNarration covers: Full explanation of the method\nPrinciples Applied: - Pre-Training: Visual helps audience understand the concept - Modality: Complex explanation via voice, simple visual support"
+  },
+  {
+    "objectID": "presentation/slides_structure.html#slide-6-the-takeaway",
+    "href": "presentation/slides_structure.html#slide-6-the-takeaway",
+    "title": "Slide Structure: The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "",
+    "text": "Key Visual: Simple icon or image (doctor consultation, prescription pad, or choice visual)\nOn-screen text: - “Accessibility ≠ Effectiveness” - “Talk to your doctor about all options”\nSmall footer: This is not medical advice.\nNarration covers: Why minoxidil is more advertised (OTC vs prescription) and the core message\nPrinciples Applied: - Coherence: Clear, actionable takeaway - Personalization: Direct, conversational tone - Signaling: Emphasize the key message"
+  },
+  {
+    "objectID": "presentation/slides_structure.html#slide-7-references-optional---can-be-handout",
+    "href": "presentation/slides_structure.html#slide-7-references-optional---can-be-handout",
+    "title": "Slide Structure: The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "",
+    "text": "Content: 1. Gupta, A.K., et al. (2022). JAMA Dermatology 2. American Hair Loss Association 3. Mordor Intelligence Market Report"
+  },
+  {
+    "objectID": "presentation/script.html",
+    "href": "presentation/script.html",
+    "title": "Presentation Script: The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "",
+    "text": "[Total time: ~3 minutes]\n\n\n\nHair loss is incredibly common. Twenty-five percent of men start experiencing some hair loss before age 21, and two-thirds of men will notice significant hair loss before 35. For women, about half will experience hair loss over their lifetime. With so many people affected, it’s no surprise that the hair loss treatment industry is estimated to be worth three billion dollars today.\n\n\n\n\nWalk into any pharmacy and you’ll see shelves full of hair loss treatments. The most prominent product you’ll find is minoxidil, commonly known as Rogaine. It’s over-the-counter, heavily advertised, and what most people reach for when they notice their hair thinning. But here’s the thing: despite its popularity, minoxidil is not the most effective treatment available.\n\n\n\n\nA 2022 study published in JAMA Dermatology used a method called network meta-analysis to compare hair loss treatments. The researchers combined data from 23 clinical trials to rank treatments by effectiveness.\nThe results? Dutasteride ranked first with an effectiveness score of 96%. Finasteride came in second at around 88%. And minoxidil? It ranked third with a score of about 52%.\nSo why the difference? Pattern baldness is primarily driven by a hormone called DHT. Dutasteride reduces DHT levels by about 92%, and finasteride reduces it by about 73%. Minoxidil, however, works differently. It increases blood flow to hair follicles, which helps, but it doesn’t address the root cause of the problem.\n\n\n\n\nWhat makes this study particularly interesting from a data science perspective is the use of network meta-analysis. This technique allows researchers to compare treatments even when they weren’t tested directly against each other in the same trial. By building a network of all available studies, the method estimates how each treatment compares to every other one. It’s a powerful way to synthesize evidence when direct head-to-head comparisons don’t exist.\n\n\n\n\nSo why is the less effective treatment more heavily advertised? Accessibility. Minoxidil is available over-the-counter, so companies can market directly to consumers. Dutasteride and finasteride require prescriptions, which means less direct advertising and less consumer awareness.\nThe takeaway is simple: the products you see advertised most aren’t necessarily the most effective. If you’re serious about results, it’s worth having a conversation with a doctor about all your options, including prescription treatments.\nThis is not medical advice.\n\n\n\n\n\nGupta, A.K., et al. (2022). Relative Efficacy of Minoxidil and the 5-alpha Reductase Inhibitors in Androgenetic Alopecia Treatment of Male Patients: A Network Meta-Analysis. JAMA Dermatology, 158(3), 266-274.\nAmerican Hair Loss Association - Men’s Hair Loss Statistics\nMordor Intelligence - Hair Loss Treatment Products Market Size"
+  },
+  {
+    "objectID": "presentation/script.html#opening-hook-30-seconds",
+    "href": "presentation/script.html#opening-hook-30-seconds",
+    "title": "Presentation Script: The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "",
+    "text": "Hair loss is incredibly common. Twenty-five percent of men start experiencing some hair loss before age 21, and two-thirds of men will notice significant hair loss before 35. For women, about half will experience hair loss over their lifetime. With so many people affected, it’s no surprise that the hair loss treatment industry is estimated to be worth three billion dollars today."
+  },
+  {
+    "objectID": "presentation/script.html#the-problem-30-seconds",
+    "href": "presentation/script.html#the-problem-30-seconds",
+    "title": "Presentation Script: The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "",
+    "text": "Walk into any pharmacy and you’ll see shelves full of hair loss treatments. The most prominent product you’ll find is minoxidil, commonly known as Rogaine. It’s over-the-counter, heavily advertised, and what most people reach for when they notice their hair thinning. But here’s the thing: despite its popularity, minoxidil is not the most effective treatment available."
+  },
+  {
+    "objectID": "presentation/script.html#the-study-and-findings-45-seconds",
+    "href": "presentation/script.html#the-study-and-findings-45-seconds",
+    "title": "Presentation Script: The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "",
+    "text": "A 2022 study published in JAMA Dermatology used a method called network meta-analysis to compare hair loss treatments. The researchers combined data from 23 clinical trials to rank treatments by effectiveness.\nThe results? Dutasteride ranked first with an effectiveness score of 96%. Finasteride came in second at around 88%. And minoxidil? It ranked third with a score of about 52%.\nSo why the difference? Pattern baldness is primarily driven by a hormone called DHT. Dutasteride reduces DHT levels by about 92%, and finasteride reduces it by about 73%. Minoxidil, however, works differently. It increases blood flow to hair follicles, which helps, but it doesn’t address the root cause of the problem."
+  },
+  {
+    "objectID": "presentation/script.html#data-science-connection-30-seconds",
+    "href": "presentation/script.html#data-science-connection-30-seconds",
+    "title": "Presentation Script: The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "",
+    "text": "What makes this study particularly interesting from a data science perspective is the use of network meta-analysis. This technique allows researchers to compare treatments even when they weren’t tested directly against each other in the same trial. By building a network of all available studies, the method estimates how each treatment compares to every other one. It’s a powerful way to synthesize evidence when direct head-to-head comparisons don’t exist."
+  },
+  {
+    "objectID": "presentation/script.html#why-the-gap-exists-takeaway-30-seconds",
+    "href": "presentation/script.html#why-the-gap-exists-takeaway-30-seconds",
+    "title": "Presentation Script: The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "",
+    "text": "So why is the less effective treatment more heavily advertised? Accessibility. Minoxidil is available over-the-counter, so companies can market directly to consumers. Dutasteride and finasteride require prescriptions, which means less direct advertising and less consumer awareness.\nThe takeaway is simple: the products you see advertised most aren’t necessarily the most effective. If you’re serious about results, it’s worth having a conversation with a doctor about all your options, including prescription treatments.\nThis is not medical advice."
+  },
+  {
+    "objectID": "presentation/script.html#references",
+    "href": "presentation/script.html#references",
+    "title": "Presentation Script: The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "",
+    "text": "Gupta, A.K., et al. (2022). Relative Efficacy of Minoxidil and the 5-alpha Reductase Inhibitors in Androgenetic Alopecia Treatment of Male Patients: A Network Meta-Analysis. JAMA Dermatology, 158(3), 266-274.\nAmerican Hair Loss Association - Men’s Hair Loss Statistics\nMordor Intelligence - Hair Loss Treatment Products Market Size"
+  },
+  {
+    "objectID": "presentation/presentation_idea.html",
+    "href": "presentation/presentation_idea.html",
+    "title": "Jiro's World",
+    "section": "",
+    "text": "Hair loss is very common. 25% percent of men will start experiencing some hair loss before age 21 and two-thirds of men will experience noticeable hair loss before age 35. For women, 12% experience hair loss in their 20s, while 50% of women experience hair loss over their lifetime. With many people being affected, it’s no surprise that the hair loss treatment industry is estimated to be worth three billion dollars today.\nWe see shelves full of hair-loss treatment products in pharmacies with the most popular being minoxidil or more commonly known as Rogaine. Minoxidil is over-the-counter, heavily advertised and is the product that most people use when they experience hair loss. Despite it’s popularity however, it is not the most effective treatment.\nA recent study that combined 33 clinical trials ranked hair loss treatments. The study used a method called network meta-analysis, which allows the comparison of treatments even if they were not tested directly. The results showed dutasteride as the most effective with an effectiveness score of 96.3%. Finasteride ranked second with a score of 87.1%. Minoxidil (Rogaine) ranked third with a score of 52.4%.\nThis makes sense if we consider that pattern baldness is driven by a hormone called DHT. Dutasteride reduces DHT by about 92% and finasteride reduces DHT by about 73%. Minoxidil works differently in that it increases blood flow to the hair follicles, which helps but does not address the root cause of the problem.\nThe study also found that oral medications are more effective than topical medication of the same drug (the case with topical finasteride), which is another reason why topical medicines are note as effective as advertised.\nAlthough not the most effective treatment, minoxidil is still heavily advertised. This is mainly due of its accessibility. Because minoxidil is over-the-counter, companies are able to directly market to consumers. To compare, dutasteride and finasteride have to be prescribed and so are not advertised to the same degree which makes it harder to buy/become informed about. The result is a gap between what’s most marketed and what’s most effective.\nFor anyone considering treatment, the takeaway is simple. The products that you see advertised most aren’t necessarily the most effective. Having a conversation with a doctor about your options, especially prescription options like dutasteride or finasteride, might be worth the effort if you’re serious about results. This is not medical advice.\n\nReferences\n[1] American Hair Loss Association. (n.d.). Men’s Hair Loss: Introduction. https://www.americanhairloss.org/men_hair_loss/introduction.html\n[2] Ho, C. H., Sood, T., & Zito, P. M. (2023). Androgenetic Alopecia. StatPearls. https://www.ncbi.nlm.nih.gov/books/NBK430924/\n[3] Mordor Intelligence. (2025). Hair Loss Treatment Products Market Size & Share Analysis. https://www.mordorintelligence.com/industry-reports/hair-loss-treatment-products-market\n[4] Gupta, Aditya K., Maanasa Venkataraman, Mesbah Talukder, and Mary A. Bamimore. 2022. “Relative Efficacy of Minoxidil and the 5-α Reductase Inhibitors in Androgenetic Alopecia Treatment of Male Patients: A Network Meta-Analysis.” JAMA Dermatology 158 (3): 266–74. https://doi.org/10.1001/jamadermatol.2021.5743."
+  },
+  {
     "objectID": "posts/meta-analysis-explained/index.html",
     "href": "posts/meta-analysis-explained/index.html",
     "title": "What Your Pharmacy Shelves Won’t Tell You About Hair Loss Treatment",
@@ -63,11 +175,11 @@
     "text": "Conclusion\nNetwork meta-analysis takes scattered clinical evidence and turns it into something useful. Rankings you can actually act on.\nTreatments can be compared indirectly through common reference points. That lets us answer questions no single trial could handle such as, “Which of these many treatments is actually best?”.\nFor hair loss, Gupta’s 2022 analysis gave a clear answer, oral dutasteride leads with higher-dose finasteride coming in next with topical minoxidil trailing behind. This NMA study is not the final word. New head-to-head trials will come along, the network will grow and estimates will become more precise.\nThe next time you are facing a decision with multiple options and conflicting evidence, look for a network meta-analysis. It might cut through the noise and show you what the data actually says."
   },
   {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "Blog",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
     "section": "",
-    "text": "What Your Pharmacy Shelves Won’t Tell You About Hair Loss Treatment\n\n\nA Data Science Approach to Comparing Treatments with Network Meta-Analysis\n\n\n\ndata science\n\nstatistics\n\nnetwork meta-analysis\n\nhealth\n\n\n\n\n\n\n\n\n\nJan 17, 2026\n\n\nJiro Amato\n\n\n\n\n\nNo matching items"
+    "text": "Lots of exciting things to come but for now, please refer to the About me page 😊"
   },
   {
     "objectID": "about.html#about-me",
@@ -91,10 +203,115 @@
     "text": "🤝 Connect with Me\nFeel free to reach out to me on LinkedIn.\n\n\n\nImage3\n\n\n\n“Always be ready to adjust, recalibrate, and stay after it to become better, somehow.” - David Goggins"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
     "section": "",
-    "text": "Lots of exciting things to come but for now, please refer to the About me page 😊"
+    "text": "Lab 3 Presentation\n\n\n\n\n\n\npresentation\n\n\n\n\n\n\n\n\n\nJan 25, 2026\n\n\nJiro Amato\n\n\n\n\n\n\n\n\n\n\n\n\nWhat Your Pharmacy Shelves Won’t Tell You About Hair Loss Treatment\n\n\nA Data Science Approach to Comparing Treatments with Network Meta-Analysis\n\n\n\ndata science\n\nstatistics\n\nnetwork meta-analysis\n\nhealth\n\n\n\n\n\n\n\n\n\nJan 17, 2026\n\n\nJiro Amato\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/lab-3-presentation/index.html",
+    "href": "posts/lab-3-presentation/index.html",
+    "title": "Lab 3 Presentation",
+    "section": "",
+    "text": "Global Hair Loss Statistics"
+  },
+  {
+    "objectID": "presentation/lab2.html",
+    "href": "presentation/lab2.html",
+    "title": "DSCI 542 Lab 2",
+    "section": "",
+    "text": "In this course, we are using a labor-based grading approach. This means that each task in the lab is graded based on completion rather than evaluation of quality. If a question is completed according to the specifications provided such as meeting the word limit, following the required format, or staying within the allotted time you will receive full credit for that question.\nWhen submitting your lab, please be sure to:\n\nInclude a link to your GitHub repository containing your work as well as a link to your published blog post.\nSubmit a the .qmd file along with a rendered version (either .html or .pdf) of your lab to Gradescope.\nOn Canvas, submit a link to your blog post for peer review."
+  },
+  {
+    "objectID": "presentation/lab2.html#lab-assignment-instructions",
+    "href": "presentation/lab2.html#lab-assignment-instructions",
+    "title": "DSCI 542 Lab 2",
+    "section": "",
+    "text": "In this course, we are using a labor-based grading approach. This means that each task in the lab is graded based on completion rather than evaluation of quality. If a question is completed according to the specifications provided such as meeting the word limit, following the required format, or staying within the allotted time you will receive full credit for that question.\nWhen submitting your lab, please be sure to:\n\nInclude a link to your GitHub repository containing your work as well as a link to your published blog post.\nSubmit a the .qmd file along with a rendered version (either .html or .pdf) of your lab to Gradescope.\nOn Canvas, submit a link to your blog post for peer review."
+  },
+  {
+    "objectID": "presentation/lab2.html#github-link",
+    "href": "presentation/lab2.html#github-link",
+    "title": "DSCI 542 Lab 2",
+    "section": "Github Link",
+    "text": "Github Link\nJiro Amato Lab 2: https://github.ubc.ca/mds-2025-26/DSCI_542_lab2_jiromig"
+  },
+  {
+    "objectID": "presentation/lab2.html#question-1-understand-your-audience",
+    "href": "presentation/lab2.html#question-1-understand-your-audience",
+    "title": "DSCI 542 Lab 2",
+    "section": "Question 1: Understand your audience",
+    "text": "Question 1: Understand your audience\nrubric={completion:5}\nIn this lab, you will be tasked to writing a data science blog based on the topic you chose in lab 1.\nAs mentioned in Lecture 2, an audience persona is a brief written description of a specific person in your target audience, who might be real or imagined. It should include the following information about the person:\n\nTheir experience. How much experience do they have with your subject, and of what kind?\nTheir motivation. Why do they want to learn about this subject? If they have any specific goals, what are they?\n\nFor example, here are three personas for potential audiences of an explanation of quantum computing:\n\nMike is a third-grade student. He has fairly little experience with any computers at all, let alone quantum computers. But he suspects that computers might be able to help his with tough homework problems, and wants to know if this is true of quantum computers.\nNadine is a fifteen-year-old high school student. She is familiar with computers; most commonly she uses her iPhone to socialize, study, and take photoes. She has never heard of quantum computers before, but likes to impress her friends with cool facts about things she learns.\nAlex is an undergraduate computer science student interested in machine learning and artificial intelligence. They taken courses in chemistry and physics, and knows the basics of how quantum computing differs from classical computing. They are curious about the kinds of problems that quantum computing could be used to solve, and how soon the technology might become commercially available.\n\nWrite an audience persona for the target reader of your blog that is 3-5 sentences long. Additionally, propose a minimum of 3 different titles for your blog. During the lab, we encourage you to exchange the audience persona, the titles, and the abstract with your peers and get their initial feedback.\n\nAnswer: Question 1\n\nPersona\n\nJohn Smith is a twenty-five-year-old working professional. John has noticed some gradual hair loss over the last 2-3 years and recently decided to research his options. After looking for possible treatments online, he found himself overwheled by conflicting information about what is the most effective, from ads claiming Rogaine to be the most effective, to articles about “breakthrough” interventions. John knows nothing about Data Science/Statistics but is enthusiastic to learn so that he can make an informed decision. He is curious to learn how to evaluate the results on hair loss studies himself rather than to trust marketing/anecdotes from forums.\n\n\n\nPotential Titles:\n\nWhat Your Pharmacy Shelves Won’t Tell You About Hair Loss Treatment\nWhy the Most Advertised Hair Loss Treatment Isn’t the Most Effective\nThe Hair Loss Treatments Your Doctor Knows About (But Ads Won’t Show You)\nA Beginner’s Guide to Hair Loss: Causes, Treatments, and What Actually Works"
+  },
+  {
+    "objectID": "presentation/lab2.html#question-2-write-a-data-science-blog",
+    "href": "presentation/lab2.html#question-2-write-a-data-science-blog",
+    "title": "DSCI 542 Lab 2",
+    "section": "Question 2: Write a data science blog",
+    "text": "Question 2: Write a data science blog\nrubric={completion: 30}\n\nGuideline to get started\nI highly recommend you check out this guideline from TowardsDataScience.com, a well-known publisher for data science blogs.\n\n\nTypes of blog post in data science\nThere are many different types of blog posts that can be written in the field of data science. Some common types of blog posts include:\n\nTutorials: These posts provide step-by-step instructions or guidance on how to perform a specific task in data science, such as using a machine learning algorithm or creating a data visualization using a specific package/language.\nExplanations: These posts aim to explain complex concepts or techniques in data science in a way that is easy for a general audience to understand. They might include examples or case studies to illustrate the concept or technique.\nNews and analysis: These posts discuss recent news or research in the field of data science, and provide analysis or commentary on the implications or significance of the news or research.\nPersonal experiences: These posts share the experiences of a data scientist or student learning data science, and might include stories about challenges and successes, as well as tips and advice for others interested in pursuing a career in data science.\nComparisons and contrasts: These posts compare and contrast different tools, approaches, or concepts in data science, and might include pros and cons or recommendations for when to use each option.\n\nOverall, there are many different types of blog posts that can be written in data science, and the type of post will depend on the goals and audience of the blog.\nFor your inspiration, this is a blog post that Nico Van den Hooff, a MDS alumni, wrote last year\nExploring the Most Popular Machine Learning and Deep Learning GitHub Repositories\n\n\nLength\nFor this assignment, we suggest aiming for a word count of around 1200 (+ or - 300) words, not including code, captions, references, etc. Please consider the amount of time it will take your audience to read your post and keep this in mind as you plan and write your content. We recommend creating a brief outline for the blog first before diving in.\n\n\nHow to write your blog\nIn this question, you are asked to write your blog using Quarto.\nStep 1: Login to Github\nStep 2: Create your Quarto Blog.\nStep 3: Start writing and finish! Push/publish your changes, and .\nStep 4: Submit the blog’s outline as well as a link to your blog. Your blog can be published either via Quarto Pub or GitHub Pages.\nYour blog will be evaluated for completion based on the word count as well as the link to your blog functioning as expected.\n\n\nSome prompts to get you started (Optional)\n\nWhat is the main topic or concept you want to write about in your blog post? What makes it interesting or important to your audience?\nWhat type of data science blog do you want to write? (see different types above)\nWhat are the key points or ideas you want to include in your blog post? How can you organize these points to create a clear and coherent structure for your post?\nHow can you use examples or case studies to illustrate the concepts or techniques you are discussing in your blog post? What are some real-world applications of the topic you are writing about?\nHow can you make your blog post engaging and interactive for your audience? What types of media or interactive elements can you include to make your post more interesting and interactive?\nHow can you conclude your blog post in a way that leaves a lasting impression on your readers? What are the main takeaways you want your readers to remember after reading your post?"
+  },
+  {
+    "objectID": "presentation/lab2.html#peer-feedback-to-be-completed-next-week",
+    "href": "presentation/lab2.html#peer-feedback-to-be-completed-next-week",
+    "title": "DSCI 542 Lab 2",
+    "section": "Peer Feedback (to be completed next week)",
+    "text": "Peer Feedback (to be completed next week)\nAfter the submission deadline, you will get randomly assigned 2 blogs from your classmates to review.\nPeer review allows you to receive feedback on your writing from multiple peers, which help you see your work more objectively and identify areas where they can revise and improve their writing. It also fosters a sense of community and a safe environment to collaborate and help each other with constructive feedback.\nRead the blog posts carefully, paying attention to the content, organization, and style of the writing. Consider the following questions as you review:\n\nIs the content of the blog post accurate and well-researched?\nIs the structure of the blog post clear and logical?\nAre the ideas in the blog post effectively communicated and easy to understand?\nIs the writing style of the blog post engaging and appropriate for the audience?\n\nWrite a review for each of the blog posts, addressing the above questions and any other issues you feel are relevant. Use specific examples from the posts to support your points."
+  },
+  {
+    "objectID": "presentation/lab2.html#link-to-blog-post",
+    "href": "presentation/lab2.html#link-to-blog-post",
+    "title": "DSCI 542 Lab 2",
+    "section": "Link to Blog Post:",
+    "text": "Link to Blog Post:\nhttps://jiroamato.github.io/posts/meta-analysis-explained/"
+  },
+  {
+    "objectID": "presentation/rubric.html",
+    "href": "presentation/rubric.html",
+    "title": "Jiro's World",
+    "section": "",
+    "text": "Rubric for presentation\nContent and Structure:\n\nIs the main message clear?\nDoes the presentation follow a logical flow (e.g., problem-solution structure)?\nIs the content appropriate for the stated audience?\n\nSlide Design:\n\nDo the slides minimize cognitive load?\nAre visuals clear and supportive of the message (not distracting)?\nDoes the presenter apply multimedia learning principles (coherence, spatial contiguity, signaling)?\n\nDelivery:\n\nIs the pace appropriate (not too fast, not too slow)?\nDoes the presenter make eye contact and use open body language?\nAre filler words minimized?\nDoes the presenter convey enthusiasm and confidence?\n\nStorytelling:\n\nDoes the presentation engage the audience?\nAre transitions between ideas smooth?\nIs there a clear takeaway at the end?\n\nEach presenter will have approximately 3 minutes to present, followed by 2-3 minutes of verbal feedback from peers.\n\n\nPresentation Persona:\n\nJohn Smith is a twenty-five-year-old working professional. John has noticed some gradual hair loss over the last 2-3 years and recently decided to research his options. After looking for possible treatments online, he found himself overwheled by conflicting information about what is the most effective, from ads claiming Rogaine to be the most effective, to articles about “breakthrough” interventions. John knows a bit about Data Science/Statistics but is enthusiastic to learn so that he can make an informed decision. He is curious to learn how to evaluate the results on hair loss studies himself rather than to trust marketing/anecdotes from forums."
+  },
+  {
+    "objectID": "presentation/slides.html#hair-loss-is-common",
+    "href": "presentation/slides.html#hair-loss-is-common",
+    "title": "The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "Hair Loss is Common",
+    "text": "Hair Loss is Common\n\n\nHair loss is incredibly common. Twenty-five percent of men start experiencing some hair loss before age 21, and two-thirds of men will notice significant hair loss before 35. For women, about half will experience hair loss over their lifetime. With so many people affected, it’s no surprise that the hair loss treatment industry is estimated to be worth three billion dollars today."
+  },
+  {
+    "objectID": "presentation/slides.html#what-you-see-isnt-what-works-best",
+    "href": "presentation/slides.html#what-you-see-isnt-what-works-best",
+    "title": "The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "What You See Isn’t What Works Best",
+    "text": "What You See Isn’t What Works Best\n\nMost Prominent ≠ Most Effective\n\nWalk into any pharmacy and you’ll see shelves full of hair loss treatments. The most prominent product you’ll find is minoxidil, commonly known as Rogaine. It’s over-the-counter, heavily advertised, and what most people reach for when they notice their hair thinning. But here’s the thing: despite its popularity, minoxidil is not the most effective treatment available."
+  },
+  {
+    "objectID": "presentation/slides.html#the-evidence-treatment-rankings",
+    "href": "presentation/slides.html#the-evidence-treatment-rankings",
+    "title": "The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "The Evidence: Treatment Rankings",
+    "text": "The Evidence: Treatment Rankings\n\n\n\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\n\nA 2022 study published in JAMA Dermatology used a method called network meta-analysis to compare hair loss treatments. The researchers combined data from 23 clinical trials to rank treatments by effectiveness.\nThe results? Dutasteride ranked first with an effectiveness score of 96%. Finasteride came in second at around 88%. And minoxidil? It ranked third with a score of about 52%.\nSo why the difference? Pattern baldness is primarily driven by a hormone called DHT. Dutasteride reduces DHT levels by about 92%, and finasteride reduces it by about 73%. Minoxidil, however, works differently. It increases blood flow to hair follicles, which helps, but it doesn’t address the root cause of the problem."
+  },
+  {
+    "objectID": "presentation/slides.html#how-do-we-know-network-meta-analysis",
+    "href": "presentation/slides.html#how-do-we-know-network-meta-analysis",
+    "title": "The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "How Do We Know? Network Meta-Analysis",
+    "text": "How Do We Know? Network Meta-Analysis\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\n\nWhat makes this study particularly interesting from a data science perspective is the use of network meta-analysis. This technique allows researchers to compare treatments even when they weren’t tested directly against each other in the same trial. By building a network of all available studies, the method estimates how each treatment compares to every other one. It’s a powerful way to synthesize evidence when direct head-to-head comparisons don’t exist."
+  },
+  {
+    "objectID": "presentation/slides.html#the-takeaway",
+    "href": "presentation/slides.html#the-takeaway",
+    "title": "The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "The Takeaway",
+    "text": "The Takeaway\n\nAccessibility ≠ Effectiveness\n\n\nTalk to your doctor about all options\n\n\nSo why is the less effective treatment more heavily advertised? Accessibility. Minoxidil is available over-the-counter, so companies can market directly to consumers. Dutasteride and finasteride require prescriptions, which means less direct advertising and less consumer awareness.\nThe takeaway is simple: the products you see advertised most aren’t necessarily the most effective. If you’re serious about results, it’s worth having a conversation with a doctor about all your options, including prescription treatments."
+  },
+  {
+    "objectID": "presentation/slides.html#references",
+    "href": "presentation/slides.html#references",
+    "title": "The Most Advertised Treatment Isn’t Always the Most Effective",
+    "section": "References",
+    "text": "References\n\nGupta, A.K., et al. (2022). Relative Efficacy of Minoxidil and the 5-alpha Reductase Inhibitors in Androgenetic Alopecia Treatment of Male Patients: A Network Meta-Analysis. JAMA Dermatology, 158(3), 266-274.\nAmerican Hair Loss Association - Men’s Hair Loss Statistics\nMordor Intelligence - Hair Loss Treatment Products Market Size"
   }
 ]
